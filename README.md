@@ -38,6 +38,10 @@ pnpm dev                    # http://localhost:5173 renders both components
 
 Fork: issue [Hebilicious/vize#1](https://github.com/Hebilicious/vize/issues/1), fixed by [#2](https://github.com/Hebilicious/vize/pull/2).
 
+Upstream: still reproduces on `main` at `14877bda8`; reported in
+[ubugeeei-prod/vize#8623](https://github.com/ubugeeei-prod/vize/issues/8623), fix in draft
+[ubugeeei-prod/vize#8618](https://github.com/ubugeeei-prod/vize/pull/8618).
+
 | Compiler                                      | Plain `vite dev` / `vite build` | Vitest Browser Mode |
 | --------------------------------------------- | :-----------------------------: | :-----------------: |
 | `@vitejs/plugin-vue` (official)               |             ✅ works            |       ✅ works      |
@@ -111,6 +115,10 @@ was needed. The official side needs no exclude.
 ## 2. SVG: `v-if` branches and dynamic `:class`/`:style` are broken
 
 Fork: issue [Hebilicious/vize#3](https://github.com/Hebilicious/vize/issues/3), fixed by [#4](https://github.com/Hebilicious/vize/pull/4).
+
+Upstream: still reproduces on `main` at `14877bda8`; reported in
+[ubugeeei-prod/vize#8624](https://github.com/ubugeeei-prod/vize/issues/8624), fix in draft
+[ubugeeei-prod/vize#8619](https://github.com/ubugeeei-prod/vize/pull/8619).
 
 | Check (on `vapor` output)                            | Official | vize |
 | ---------------------------------------------------- | :------: | :--: |
@@ -254,6 +262,10 @@ const n0 = _createComponentWithFallback(_component_RefChild, { ref: () => "child
 
 Fork: issue [Hebilicious/vize#9](https://github.com/Hebilicious/vize/issues/9), fixed by [#10](https://github.com/Hebilicious/vize/pull/10).
 
+Upstream: still reproduces on `main` at `14877bda8`; reported in
+[ubugeeei-prod/vize#8625](https://github.com/ubugeeei-prod/vize/issues/8625), fix in draft
+[ubugeeei-prod/vize#8620](https://github.com/ubugeeei-prod/vize/pull/8620).
+
 `src/FallthroughOuter.vue` renders `<section id="outer"><FallthroughInner /></section>`
 and is mounted with `{ "data-owner": "outer" }`. The attribute belongs on
 `#outer` only, but `#inner` gets it too:
@@ -305,6 +317,10 @@ const t0 = _template("<div><button id=\"next-version\" type=\"button\">Next vers
 ## 7. A renamed or nested slot-prop destructure reads the wrong key
 
 Fork: issue [Hebilicious/vize#13](https://github.com/Hebilicious/vize/issues/13), fixed by [#14](https://github.com/Hebilicious/vize/pull/14).
+
+Upstream: still reproduces on `main` at `14877bda8`; reported in
+[ubugeeei-prod/vize#8626](https://github.com/ubugeeei-prod/vize/issues/8626), fix in draft
+[ubugeeei-prod/vize#8621](https://github.com/ubugeeei-prod/vize/pull/8621).
 
 `src/SlotOwner.vue` renders `<slot :props="trigger" />`, and `src/SlotConsumer.vue`
 reads it twice: renamed, `v-slot="{ props: trigger }"`, and nested,
@@ -371,6 +387,13 @@ _setRef(n0, "field");
 ## 9. An inline handler with a typed parameter never runs
 
 Fork: issue [Hebilicious/vize#17](https://github.com/Hebilicious/vize/issues/17), fixed by [#18](https://github.com/Hebilicious/vize/pull/18).
+
+Upstream: this component case is fixed by
+[ubugeeei-prod/vize#8133](https://github.com/ubugeeei-prod/vize/pull/8133) and passes on `main` at
+`14877bda8`. The same typed handler on a native element (`<button @click="(event: MouseEvent) => …">`)
+still never runs there; reported in
+[ubugeeei-prod/vize#8627](https://github.com/ubugeeei-prod/vize/issues/8627), fix in draft
+[ubugeeei-prod/vize#8622](https://github.com/ubugeeei-prod/vize/pull/8622).
 
 `src/TypedHandler.vue` listens with `<TypedHandlerChild @ping="(value: string) => (received = value)" />`,
 and the child emits `ping` with `"pong"`. `#typed-received` stays `none`:
